@@ -19,6 +19,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Key;
 import com.google.inject.multibindings.OptionalBinder;
 import com.google.inject.name.Names;
+import de.ks.standbein.application.ApplicationCfg;
 import de.ks.standbein.application.MainWindow;
 import de.ks.standbein.i18n.LocalizationModule;
 import de.ks.standbein.sample.hello.HelloWindow;
@@ -27,6 +28,7 @@ public class CustomLocalizationModule extends AbstractModule {
   @Override
   protected void configure() {
     bind(MainWindow.class).to(HelloWindow.class);
+    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("app.title", 300, 100).setLocalized(true));
 
     OptionalBinder.newOptionalBinder(binder(), Key.get(String.class, Names.named(LocalizationModule.BASENAME)))//
       .setBinding().toInstance("de.ks.customlocalization.MyLocalization");

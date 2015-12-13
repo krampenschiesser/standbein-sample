@@ -17,6 +17,7 @@ package de.ks.standbein.sample.hello;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
+import de.ks.standbein.application.ApplicationCfg;
 import de.ks.standbein.application.MainWindow;
 import de.ks.standbein.module.ApplicationServiceModule;
 
@@ -27,6 +28,7 @@ public class HelloWorldModule extends AbstractModule {
   @Override
   protected void configure() {
     //define our initial window
+    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("app.title", 300, 100).setLocalized(true));
     bind(MainWindow.class).to(HelloWindow.class);
 
     //define a fancy app icon, although this is optional

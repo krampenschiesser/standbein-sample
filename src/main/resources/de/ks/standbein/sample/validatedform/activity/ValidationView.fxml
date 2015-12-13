@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="de.ks.standbein.sample.validatedform.activity.ValidationController">
+    <children>
+        <GridPane alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" vgap="10.0"
+                  StackPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="30.0"/>
+                <ColumnConstraints hgrow="NEVER" minWidth="30.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="30.0" vgrow="NEVER"/>
+                <RowConstraints minHeight="30.0" vgrow="NEVER"/>
+                <RowConstraints minHeight="30.0" vgrow="NEVER"/>
+                <RowConstraints minHeight="30.0" vgrow="NEVER"/>
+            </rowConstraints>
+            <children>
+                <Button fx:id="submit" defaultButton="true" mnemonicParsing="false" onAction="#onSubmit"
+                        text="%validation.submit" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER"
+                        GridPane.rowIndex="3"/>
+                <TextField fx:id="name" GridPane.columnIndex="1"/>
+                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <RadioButton fx:id="btn1" mnemonicParsing="false" text="RadioButton" GridPane.columnIndex="1"
+                                     GridPane.rowIndex="1">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="radioGroup"/>
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="btn2" mnemonicParsing="false" text="RadioButton" toggleGroup="$radioGroup"/>
+                        <RadioButton fx:id="btn3" mnemonicParsing="false" selected="true" text="RadioButton"
+                                     toggleGroup="$radioGroup"/>
+                    </children>
+                </VBox>
+                <Slider fx:id="slider" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Label text="%validation.name:"/>
+                <Label text="%validation.radio:" GridPane.rowIndex="1"/>
+                <Label text="%validation.slider:" GridPane.rowIndex="2"/>
+            </children>
+        </GridPane>
+    </children>
+</StackPane>

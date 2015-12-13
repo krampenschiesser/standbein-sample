@@ -31,14 +31,8 @@ public class HelloWindow extends MainWindow {
   Localized localized;
 
   @Override
-  public String getApplicationTitle() {
-    return localized.get("app.title");
-  }
-
-  @Override
   public Parent getNode() {
     StackPane pane = new StackPane();
-    pane.setPrefSize(300, 100);//the root size is defined by the content size
 
     String parameter = "Sauerland";//localization supports parameters
     String translatedKey = localized.get("hello", parameter);//translate the key with parameter
