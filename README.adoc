@@ -1,0 +1,12 @@
+= Standbein samples
+
+This is a collection of samples for the standbein library.
+In order to properly use them you have to install standbein to your local maven repository:
+
+[source,bash]
+$ git clone https://github.com/krampenschiesser/standbein.git
+$ cd standbein
+$ ./gradlew publishToMavenLocal
+
+You can find the different example in the following package: +
+*de.ks.standbein.sample*
