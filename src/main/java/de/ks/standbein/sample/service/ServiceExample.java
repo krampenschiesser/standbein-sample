@@ -20,14 +20,20 @@ import com.google.inject.Injector;
 import de.ks.standbein.launch.Launcher;
 import de.ks.standbein.module.ApplicationModule;
 
-/**
- * Main class that starts and stops everything
- */
 public class ServiceExample {
   public static void main(String[] args) {
-    //create guice injector
     Injector injector = Guice.createInjector(new ServiceModule(), new ApplicationModule());
 
+    /*
+     * Something special is happening here.
+     * The launcher launches its services in waves.
+     * All services with the same runlevel are launched at the same time.
+     * The services with a higher runlevel are launched after all of the services with the lower level are started
+     *
+     * The ApplicationService has the runlevel 5 and will be started before MyPostApplicationService
+     * So we will see the UI and can still setup some resources in the background.
+     * Fancy :)
+     */
     Launcher launcher = injector.getInstance(Launcher.class);
     launcher.launchAndWaitForUIThreads(args); //launch services
   }

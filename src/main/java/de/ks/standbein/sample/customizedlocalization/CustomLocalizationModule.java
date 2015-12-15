@@ -30,8 +30,11 @@ public class CustomLocalizationModule extends AbstractModule {
     bind(MainWindow.class).to(HelloWindow.class);
     bind(ApplicationCfg.class).toInstance(new ApplicationCfg("app.title", 300, 100).setLocalized(true));
 
+    //replace main bundle path
     OptionalBinder.newOptionalBinder(binder(), Key.get(String.class, Names.named(LocalizationModule.BASENAME)))//
       .setBinding().toInstance("de.ks.customlocalization.MyLocalization");
+
+    //replace bundle name to look in controller folders
     OptionalBinder.newOptionalBinder(binder(), Key.get(String.class, Names.named(LocalizationModule.FILENAME)))//
       .setBinding().toInstance("MyLocalization");
   }

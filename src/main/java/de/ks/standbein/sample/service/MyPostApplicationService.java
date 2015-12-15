@@ -31,6 +31,7 @@ public class MyPostApplicationService extends Service {
 
   @Override
   protected void doStart() {
+    //just some stalling
     log.info("Post application service is stalling....");
     for (int i = 0; i < 5; i++) {
       try {
@@ -39,8 +40,9 @@ public class MyPostApplicationService extends Service {
         return;
       }
     }
+    //real work
     log.info("Post application service is done. setting value.");
-    value.complete(this.getClass().getSimpleName() + " is done");
+    value.complete(this.getClass().getSimpleName() + " is done");//write the value back and trigger ServiceWindow.applyValue(...)
   }
 
   @Override
@@ -54,6 +56,6 @@ public class MyPostApplicationService extends Service {
 
   @Override
   public int getPriority() {
-    return 10;//de.ks.standbein.application.ApplicationService.getPriority() has prio 5, therefore we have the application before this service is visible
+    return 10;//de.ks.standbein.application.ApplicationService.getRunlevel() has runlevel 5, therefore we have the application before this service is visible
   }
 }

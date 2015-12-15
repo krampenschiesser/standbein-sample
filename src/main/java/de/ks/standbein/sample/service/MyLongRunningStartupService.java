@@ -29,6 +29,8 @@ public class MyLongRunningStartupService extends Service {
 
   @Override
   protected void doStart() {
+
+    //just some waiting
     for (int i = 0; i < 3; i++) {
       log.info("Startup service is stalling....");
       try {

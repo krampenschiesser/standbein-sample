@@ -20,9 +20,6 @@ import com.google.inject.Injector;
 import de.ks.standbein.launch.Launcher;
 import de.ks.standbein.module.ApplicationModule;
 
-/**
- * Main class that starts and stops everything
- */
 public class CustomLocalization {
   public static void main(String[] args) {
     //create guice injector

@@ -17,7 +17,6 @@ package de.ks.standbein.sample.service;
 
 import de.ks.executor.JavaFXExecutorService;
 import de.ks.standbein.application.MainWindow;
-import de.ks.standbein.i18n.Localized;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
@@ -25,14 +24,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import javax.inject.Inject;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The main windo that will be opened. Entry point for your application.
  */
 public class ServiceWindow extends MainWindow {
-  @Inject
-  Localized localized;
-
   @Inject
   MyPostApplicationService service;
   @Inject
@@ -42,6 +39,7 @@ public class ServiceWindow extends MainWindow {
   public Parent getNode() {
     StackPane pane = new StackPane();
 
+    //setup some content
     VBox vBox = new VBox();
     vBox.setSpacing(10);
     Label label = new Label("Sample with 2 services:\n 1 Before application startup, 1 that completes 5s after application startup.");
@@ -51,13 +49,18 @@ public class ServiceWindow extends MainWindow {
     Label valueLabel = new Label("Value of long running service: ");
     vBox.getChildren().add(valueLabel);
 
-    service.getValue().thenAcceptAsync(value -> {
-      String text = valueLabel.getText();
-      valueLabel.setText(text + value);
-      progressIndicator.setProgress(1);
-    }, javaFXExecutorService);
+    //add a callback for the long running operation of MyPostApplicationService
+    CompletableFuture<String> future = service.getValue();
+    //when the future is done we call the method applyValue which does its stuff in the UI. This method is executed in the JavaFX UI thread.
+    future.thenAcceptAsync(value -> applyValue(value, valueLabel, progressIndicator), javaFXExecutorService);//<- responsible service for executing the code in the FX UI thread
 
     pane.getChildren().add(vBox);
     return pane;
+  }
+
+  private void applyValue(String value, Label valueLabel, ProgressIndicator progressIndicator) {
+    String text = valueLabel.getText();
+    valueLabel.setText(text + value);
+    progressIndicator.setProgress(1);
   }
 }

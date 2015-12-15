@@ -31,6 +31,7 @@ public class ServiceModule extends AbstractModule {
     bind(ApplicationCfg.class).toInstance(new ApplicationCfg("Startup service example", 500, 120));
     bind(MainWindow.class).to(ServiceWindow.class);
 
+    //we use Guice's multibinding extension to add as many services as we want
     Multibinder<Service> multibinder = Multibinder.newSetBinder(binder(), Service.class);
     multibinder.addBinding().to(MyLongRunningStartupService.class);
     multibinder.addBinding().to(MyPostApplicationService.class);
