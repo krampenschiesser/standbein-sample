@@ -18,6 +18,9 @@ package de.ks.standbein.sample.fieldbinding.activity;
 import de.ks.standbein.BaseController;
 import de.ks.standbein.validation.ValidationRegistry;
 import de.ks.standbein.validation.validators.IntegerValidator;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -28,6 +31,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Inject;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class FieldBindingController extends BaseController<FieldBindingExampleModel> {
@@ -49,24 +53,39 @@ public class FieldBindingController extends BaseController<FieldBindingExampleMo
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    setupValidation();
+    bindModelPropertiesToControls();
+    disableFieldsWhileLoading();
+
+    //be fancy and show a progress when the store is loading
+    progress.visibleProperty().bind(store.loadingProperty());
+  }
+
+  private void setupValidation() {
     registry.registerValidator(intField, new IntegerValidator(localized));//make sure valid values are integer
     save.disableProperty().bind(registry.invalidProperty());//disable save button when validation has failed
+  }
 
+  private void bindModelPropertiesToControls() {
     //bind the name to the name field
     //binding is bidirectional, so when we save the model the new values are applied to the fields
-    store.getBinding().getStringProperty(FieldBindingExampleModel.class, FieldBindingExampleModel::getName).bindBidirectional(stringField.textProperty());
-    //bind the value to the int field using a numberconverter to convert from and to the integer
-    intField.textProperty().bindBidirectional(store.getBinding().getIntegerProperty(FieldBindingExampleModel.class, FieldBindingExampleModel::getValue), new NumberStringConverter());
-    //object bindings are also valid
-    dateField.valueProperty().bindBidirectional(store.getBinding().getObjectProperty(FieldBindingExampleModel.class, FieldBindingExampleModel::getDate));
+    StringProperty modleName = store.getBinding().getStringProperty(FieldBindingExampleModel.class, FieldBindingExampleModel::getName);
+    modleName.bindBidirectional(stringField.textProperty());
 
+    //bind the value to the int field using a numberconverter to convert from and to the integer
+    IntegerProperty modelValue = store.getBinding().getIntegerProperty(FieldBindingExampleModel.class, FieldBindingExampleModel::getValue);
+    intField.textProperty().bindBidirectional(modelValue, new NumberStringConverter());
+
+    //object bindings are also valid
+    ObjectProperty<LocalDate> modelDate = store.getBinding().getObjectProperty(FieldBindingExampleModel.class, FieldBindingExampleModel::getDate);
+    dateField.valueProperty().bindBidirectional(modelDate);
+  }
+
+  private void disableFieldsWhileLoading() {
     //disable input when loading/saving is in progress
     stringField.disableProperty().bind(store.loadingProperty());
     intField.disableProperty().bind(store.loadingProperty());
     dateField.disableProperty().bind(store.loadingProperty());
-
-    //be fancy and show a progress when
-    progress.visibleProperty().bind(store.loadingProperty());
   }
 
   @Override
