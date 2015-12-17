@@ -16,12 +16,12 @@ You can find the different example in the following package: +
 The hello world example can be found in link:src/main/java/de/ks/standbein/sample/hello/HellWorld.java[] +
 It contains:
 
-* A main class *HelloWorld* which creates a guice injector and launches the application
-* A guice module *HelloWorldModule* which configures
+* A main class link:src/main/java/de/ks/standbein/sample/hello/HellWorld.java[HelloWorld] which creates a guice injector and launches the application
+* A guice module link:src/main/java/de/ks/standbein/sample/hello/HelloWorldModule.java[HelloWorldModule] which configures
 ** the applications applications appearance (title, icon, size)
 ** the main window to use
 ** and allows you to change the locale (during startup only) to see how localization works
-* The main window *HelloWindow* which contains a label with a localized and parameterized string
+* The main window link:src/main/java/de/ks/standbein/sample/hello/HelloWindow.java[HelloWindow] which contains a label with a localized and parameterized string
 
 == Customized localization
 
