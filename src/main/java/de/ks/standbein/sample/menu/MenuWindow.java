@@ -15,13 +15,13 @@
  */
 package de.ks.standbein.sample.menu;
 
+import de.ks.standbein.application.ApplicationRoot;
 import de.ks.standbein.application.MainWindow;
 import de.ks.standbein.menu.MenuBarCreator;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 import javax.inject.Inject;
@@ -30,7 +30,6 @@ public class MenuWindow extends MainWindow {
   @Inject
   MenuBarCreator menu;
 
-  private StackPane presenter;
 
   @Override
   public Parent getNode() {
@@ -38,17 +37,13 @@ public class MenuWindow extends MainWindow {
   }
 
   @Override
-  public Pane getRoot() {
+  public ApplicationRoot getRoot() {
     BorderPane borderPane = new BorderPane();
     MenuBar menu = this.menu.createMenu("/main");
     borderPane.setTop(menu);
-    presenter = new StackPane();
+    StackPane presenter = new StackPane();
     borderPane.setCenter(presenter);
-    return borderPane;
+    return new ApplicationRoot(borderPane, presenter);
   }
 
-  @Override
-  public StackPane getContentPresenter() {
-    return presenter;
-  }
 }
