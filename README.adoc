@@ -26,7 +26,7 @@ It contains:
 == Customized localization
 
 An example showing how to configure custom localization files. +
-It can be found in: link:src/main/java/de/ks/standbein/sample/customizedlocalization/CustomLocalization.java[]
+It can be found in: link:src/main/java/de/ks/standbein/sample/customizedlocalization/CustomLocalizationExample.java[]
 
 It is configured to look for controller local resource files with the name *MyLocalization.** and
 for the main localization files in *de.ks.customlocalization.MyLocalization*.
@@ -51,10 +51,22 @@ Using services you have a predefined application startup order which can manage 
 == Validated form
 
 This example shows how validation is used.
-It can be found in: link:src/main/java/de/ks/standbein/sample/validatedform/ValidatedForm.java[]
+It can be found in: link:src/main/java/de/ks/standbein/sample/validation/ValidationExample.java[]
 
 In most cases where validation is used you would also use an activity.
 Therefore a simple *ValidationActivity* is created.
 Notice the change in the guice module(*ValidatedFormModule*) where we do not define a mainwindow but an *InitialActivity*.
 
-The binding is all defined in the *ValidationController*
+The binding is all defined in the *ValidationController*, which is defined via the *ValidationView.fxml*.
+In this example we have 3 validators:
+
+. TextField name must not be empty
+. Slider value has to be greater than 50%
+. From the 3 radio buttons the second one has to be selected
+
+Additionally we bind the disablement of the submit button to the invalid property of the validationregistry.
+
+== Fieldbinding
+
+This example shows how you can bind model properties to ui elements.
+It can be found in: link:src/main/java/de/ks/standbein/sample/fieldbinding/FieldBindingExample.java[]

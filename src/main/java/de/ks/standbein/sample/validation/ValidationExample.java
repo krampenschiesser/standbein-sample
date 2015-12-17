@@ -13,20 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.ks.standbein.sample.validatedform.activity;
+package de.ks.standbein.sample.validation;
 
-import de.ks.standbein.datasource.DataSource;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import de.ks.standbein.launch.Launcher;
+import de.ks.standbein.module.ApplicationModule;
 
-import java.util.function.Consumer;
-
-public class ValidationDS implements DataSource<ValidatedModel> {
-  @Override
-  public ValidatedModel loadModel(Consumer<ValidatedModel> furtherProcessing) {
-    return new ValidatedModel();
-  }
-
-  @Override
-  public void saveModel(ValidatedModel model, Consumer<ValidatedModel> beforeSaving) {
-
+public class ValidationExample {
+  public static void main(String[] args) {
+    Injector injector = Guice.createInjector(new ValidationModule(), new ApplicationModule());
+    injector.getInstance(Launcher.class).launchAndWaitForUIThreads();
   }
 }

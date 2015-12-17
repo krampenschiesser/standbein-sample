@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.ks.standbein.sample.validatedform;
+package de.ks.standbein.sample.validation;
 
 import com.google.inject.AbstractModule;
 import de.ks.standbein.activity.InitialActivity;
 import de.ks.standbein.application.ApplicationCfg;
-import de.ks.standbein.sample.validatedform.activity.ValidationActivity;
+import de.ks.standbein.sample.validation.activity.ValidationActivity;
 
-public class ValidatedFormModule extends AbstractModule {
+public class ValidationModule extends AbstractModule {
   @Override
   protected void configure() {
     bind(ApplicationCfg.class).toInstance(new ApplicationCfg("Validation form", 800, 600));

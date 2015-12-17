@@ -13,19 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.ks.standbein.sample.customizedlocalization;
+package de.ks.standbein.sample.validation.activity;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import de.ks.standbein.launch.Launcher;
-import de.ks.standbein.module.ApplicationModule;
-
-public class CustomLocalization {
-  public static void main(String[] args) {
-    //create guice injector
-    Injector injector = Guice.createInjector(new CustomLocalizationModule(), new ApplicationModule());
-
-    Launcher launcher = injector.getInstance(Launcher.class);
-    launcher.launchAndWaitForUIThreads(args); //launch services
-  }
+public class ValidatedModel {
 }

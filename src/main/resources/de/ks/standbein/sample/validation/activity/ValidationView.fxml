@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="de.ks.standbein.sample.validatedform.activity.ValidationController">
+           fx:controller="de.ks.standbein.sample.validation.activity.ValidationController">
     <children>
         <GridPane alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" vgap="10.0"
                   StackPane.alignment="CENTER">
