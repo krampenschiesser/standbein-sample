@@ -16,7 +16,7 @@
 package de.ks.standbein.sample.menu;
 
 import de.ks.standbein.application.MainWindow;
-import de.ks.standbein.menu.BarMenuCreatorCreator;
+import de.ks.standbein.menu.MenuBarCreator;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
@@ -28,7 +28,7 @@ import javax.inject.Inject;
 
 public class MenuWindow extends MainWindow {
   @Inject
-  BarMenuCreatorCreator menu;
+  MenuBarCreator menu;
 
   private StackPane presenter;
 

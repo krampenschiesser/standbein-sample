@@ -10,3 +10,51 @@ $ ./gradlew publishToMavenLocal
 
 You can find the different example in the following package: +
 *de.ks.standbein.sample*
+
+== Hello world
+
+The hello world example can be found in link:src/main/java/de/ks/standbein/sample/hello/HellWorld.java[] +
+It contains:
+
+* A main class *HelloWorld* which creates a guice injector and launches the application
+* A guice module *HelloWorldModule* which configures
+** the applications applications appearance (title, icon, size)
+** the main window to use
+** and allows you to change the locale (during startup only) to see how localization works
+* The main window *HelloWindow* which contains a label with a localized and parameterized string
+
+== Customized localization
+
+An example showing how to configure custom localization files. +
+It can be found in: link:src/main/java/de/ks/standbein/sample/customizedlocalization/CustomLocalization.java[]
+
+It is configured to look for controller local resource files with the name *MyLocalization.** and
+for the main localization files in *de.ks.customlocalization.MyLocalization*.
+
+== Startup services
+
+This example shows on how to create and integrate services.
+It can be found in: link:src/main/java/de/ks/standbein/sample/service/ServiceExample.java[]
+A service can be used for eg. initializing JPA, creating a connection to a remote service etc.
+Services are started in the order of their runlevels.
+
+In this example we have 2 services.
+
+* The *MyLongRunningStartupService* which simulates a long running resource initialization before the actual application service is launched
+You will see its output in the logging and the application window takes some time to open
+* The *MyPostApplicationService* which has a higher run level than the ApplicationService(which launches FX).
+So this service will be started after the application window is shown.
+After some time it will calculated a value and propagate it to the FX window.
+
+Using services you have a predefined application startup order which can manage dependencies(via runlevels).
+
+== Validated form
+
+This example shows how validation is used.
+It can be found in: link:src/main/java/de/ks/standbein/sample/validatedform/ValidatedForm.java[]
+
+In most cases where validation is used you would also use an activity.
+Therefore a simple *ValidationActivity* is created.
+Notice the change in the guice module(*ValidatedFormModule*) where we do not define a mainwindow but an *InitialActivity*.
+
+The binding is all defined in the *ValidationController*
