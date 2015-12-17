@@ -55,7 +55,7 @@ public class MyPostApplicationService extends Service {
   }
 
   @Override
-  public int getPriority() {
+  public int getRunLevel() {
     return 10;//de.ks.standbein.application.ApplicationService.getRunlevel() has runlevel 5, therefore we have the application before this service is visible
   }
 }
