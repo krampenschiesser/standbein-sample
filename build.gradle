@@ -12,7 +12,6 @@ repositories {
 
 dependencies {
     compile "de.ks:standbein:$version"
-    compile "de.ks:standbein-extensions-menu:$version"
 
     //bound against slf4j. You need to add a runtimeProvider here.
     runtime "ch.qos.logback:logback-core:$logback"
