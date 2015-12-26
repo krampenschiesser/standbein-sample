@@ -28,7 +28,7 @@ import de.ks.standbein.menu.ShowNodeAction;
 public class MenuModule extends AbstractModule {
   @Override
   protected void configure() {
-    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("app.title", 300, 100).setLocalized(true));
+    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("app.title", 300, 100));
     bind(MainWindow.class).to(MenuWindow.class);
 
     Multibinder<MenuEntry> menuBinder = Multibinder.newSetBinder(binder(), MenuEntry.class);

@@ -28,7 +28,7 @@ public class HelloWorldModule extends AbstractModule {
   @Override
   protected void configure() {
     //define our initial window
-    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("app.title", 300, 100).setLocalized(true));
+    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("app.title", 300, 100));
     bind(MainWindow.class).to(HelloWindow.class);
 
     //define a fancy app icon, although this is optional

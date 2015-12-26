@@ -28,7 +28,7 @@ public class CustomLocalizationModule extends AbstractModule {
   @Override
   protected void configure() {
     bind(MainWindow.class).to(HelloWindow.class);
-    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("app.title", 300, 100).setLocalized(true));
+    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("app.title", 300, 100));
 
     //replace main bundle path
     OptionalBinder.newOptionalBinder(binder(), Key.get(String.class, Names.named(LocalizationModule.BASENAME)))//

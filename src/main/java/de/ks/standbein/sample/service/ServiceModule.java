@@ -28,7 +28,7 @@ public class ServiceModule extends AbstractModule {
   @Override
   protected void configure() {
     //define our initial window
-    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("Startup service example", 500, 120));
+    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("Startup service example", 500, 120).setLocalized(false));
     bind(MainWindow.class).to(ServiceWindow.class);
 
     //we use Guice's multibinding extension to add as many services as we want

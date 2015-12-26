@@ -23,7 +23,7 @@ import de.ks.standbein.sample.fieldbinding.activity.FieldBindingActivity;
 public class FieldBindingModule extends AbstractModule {
   @Override
   protected void configure() {
-    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("Field binding", 800, 600));
+    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("Field binding", 800, 600).setLocalized(false));
     bind(InitialActivity.class).toInstance(new InitialActivity(FieldBindingActivity.class));
   }
 }

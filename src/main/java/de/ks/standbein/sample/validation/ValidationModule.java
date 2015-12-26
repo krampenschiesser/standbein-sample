@@ -23,7 +23,7 @@ import de.ks.standbein.sample.validation.activity.ValidationActivity;
 public class ValidationModule extends AbstractModule {
   @Override
   protected void configure() {
-    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("Validation form", 800, 600));
+    bind(ApplicationCfg.class).toInstance(new ApplicationCfg("Validation form", 800, 600).setLocalized(false));
     bind(InitialActivity.class).toInstance(new InitialActivity(ValidationActivity.class));
   }
 }
